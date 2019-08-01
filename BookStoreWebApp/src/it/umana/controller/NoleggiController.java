@@ -35,12 +35,12 @@ public class NoleggiController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Enumeration<String> attributeNames = request.getAttributeNames();
+		Enumeration<String> paramenterNames = request.getParameterNames();
 		List<Noleggio<?>> noleggi = null;
 		List<Articolo> giacenze = null;
 		List<Utente> utenti = null;
 		
-		if(!attributeNames.hasMoreElements()) {
+		if(!paramenterNames.hasMoreElements()) {
 			noleggi = BibliotecaDataStore.getNoleggi();
 			giacenze = BibliotecaDataStore.getGiacenze();
 			utenti = BibliotecaDataStore.getUtenti();

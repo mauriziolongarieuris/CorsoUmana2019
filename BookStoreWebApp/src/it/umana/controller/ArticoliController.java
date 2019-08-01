@@ -1,8 +1,10 @@
 package it.umana.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.function.Predicate;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -30,14 +32,16 @@ public class ArticoliController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Enumeration<String> attributeNames = request.getAttributeNames();
+		Enumeration<String> paramenterNames = request.getParameterNames();
 		List<Articolo> giacenze = null;
-		if(!attributeNames.hasMoreElements()) {
+		if(!paramenterNames.hasMoreElements()) {
 			// return the list of all articles with theirs availability
 			giacenze = BibliotecaDataStore.getGiacenze();
 		}
 		request.setAttribute("giacenze", giacenze);
 		request.getRequestDispatcher("ArticoliView.jsp").forward(request, response);
+		
+		Predicate<File> p = (file)->file.isFile();
 	}
 
 	/**

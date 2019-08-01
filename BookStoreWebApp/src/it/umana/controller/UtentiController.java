@@ -33,9 +33,9 @@ public class UtentiController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Enumeration<String> attributeNames = request.getAttributeNames();
+		Enumeration<String> paramenterNames = request.getParameterNames();
 		List<Utente> utenti = null;
-		if(!attributeNames.hasMoreElements()) {
+		if(!paramenterNames.hasMoreElements()) {
 			// return the list of all articles with theirs availability
 			utenti = BibliotecaDataStore.getUtenti();
 		}
